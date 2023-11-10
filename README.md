@@ -4,7 +4,7 @@ Hello, I'm Martí Mayoral, this is my front end test. Check out the [live demo]
 
 # 🎬 Preview 🎬
 
-![https://i.gyazo.com/fe0b0d0fc31957a26ba0fe04ed6fd863.gif](https://i.gyazo.com/fe0b0d0fc31957a26ba0fe04ed6fd863.gif)
+[![Image from Gyazo](https://i.gyazo.com/fe0b0d0fc31957a26ba0fe04ed6fd863.gif)](https://i.gyazo.com/fe0b0d0fc31957a26ba0fe04ed6fd863)
 
 # 🔠Basics🔠
 

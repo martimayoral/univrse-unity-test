@@ -7,15 +7,16 @@ public class ZoneController : MonoBehaviour
 {
     [SerializeField] ZoneController[] neighbourZones;
 
+    List<EnemyController> enemiesInside;
+
     // positive when player is inside
     // 0 if player is not inside
     int zoneStrength = 0;
-    List<EnemyVisibility> enemiesInside;
 
     // Start is called before the first frame update
     void Start()
     {
-        enemiesInside = new List<EnemyVisibility>();
+        enemiesInside = new List<EnemyController>();
     }
 
     private void OnPlayerEnter()
@@ -23,7 +24,7 @@ public class ZoneController : MonoBehaviour
         zoneStrength++;
         enemiesInside.ForEach(e =>
         {
-            e.Show(1);
+            e.OnEnterZone(this);
         });
     }
     private void OnPlayerExit()
@@ -31,25 +32,29 @@ public class ZoneController : MonoBehaviour
         zoneStrength--;
         enemiesInside.ForEach(e =>
         {
-            e.Hide(1);
+            e.OnExitZone(this);
         });
     }
 
     private void OnEnemyEnter(Transform enemy)
     {
-        EnemyVisibility enemyVisibility = enemy.GetComponent<EnemyVisibility>();
+        EnemyController enemyVisibility = enemy.GetComponent<EnemyController>();
         enemiesInside.Add(enemyVisibility);
 
         if (zoneStrength > 0)
-            enemyVisibility.Show(zoneStrength);
+        {
+            enemyVisibility.OnEnterZone(this, zoneStrength);
+        }
     }
     private void OnEnemyExit(Transform enemy)
     {
-        EnemyVisibility enemyVisibility = enemy.GetComponent<EnemyVisibility>();
+        EnemyController enemyVisibility = enemy.GetComponent<EnemyController>();
         enemiesInside.Remove(enemyVisibility);
 
         if (zoneStrength > 0)
-            enemyVisibility.Hide(zoneStrength);
+        {
+            enemyVisibility.OnExitZone(this, zoneStrength);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -78,5 +83,10 @@ public class ZoneController : MonoBehaviour
         }
         else if (collision.transform.CompareTag("Enemy"))
             OnEnemyExit(collision.transform);
+    }
+
+    public void RemoveEnemy(EnemyController enemy)
+    {
+        enemiesInside.Remove(enemy);
     }
 }

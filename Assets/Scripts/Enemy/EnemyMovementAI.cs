@@ -74,8 +74,8 @@ public class EnemyMovementAI : MonoBehaviour
         transform.SetPositionAndRotation(newPosition, Quaternion.Euler(0, 0, angle));
     }
 
-    public void die()
+    public void SlowDown()
     {
-        Destroy(gameObject);
+        maxSpeed *= .99f;
     }
 }

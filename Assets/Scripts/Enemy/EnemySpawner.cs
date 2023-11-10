@@ -18,7 +18,9 @@ public class EnemySpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(keyToPress) && Time.time > lastSpawn + delayBetweenSpawn)
+        if (Input.GetKey(keyToPress) && Time.time > lastSpawn + delayBetweenSpawn ||
+            // faster with shift
+            Input.GetKey(keyToPress) && Input.GetKey(KeyCode.LeftShift) && Time.time > lastSpawn + delayBetweenSpawn * .1f)
         {
             Instantiate(enemyPrefab, enemyRoot);
             lastSpawn = Time.time;

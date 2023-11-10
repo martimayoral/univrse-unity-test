@@ -1,6 +1,6 @@
 # Univrse dev test
 
-Hello, I'm Martí Mayoral, this is my front end test. Check out the [live demo](https://www.martimayo.com/demo/univrse/)!
+Hello, I'm Martí Mayoral, this is a dev test for univrse. Check out the [live demo](https://www.martimayo.com/demo/univrse/)!
 
 # 🎬 Preview 🎬
 
